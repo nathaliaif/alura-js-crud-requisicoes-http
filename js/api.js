@@ -1,6 +1,6 @@
 //Responsável por conter nossas requisições a API
 const api = {
-    async buscarPensamento() {
+    async buscarPensamentos() {
         try {
             const response = await fetch('http://localhost:3000/pensamentos');
             return await response.json();
