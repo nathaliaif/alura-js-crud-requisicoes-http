@@ -15,7 +15,11 @@ async function manipularSubmissaoFormulario(event){
     const autoria = document.getElementById("pensamento-autoria").value;
 
     try {
-        await api.salvarPensamento({ conteudo, autoria }) // não somos nós que passamos o id, o JSON server vai ficar encarregado de criar automaticamente um id aleatório
+        if (id){
+            await api.editarPensamento({ id, conteudo, autoria });
+        } else {
+            await api.salvarPensamento({ conteudo, autoria }) // não somos nós que passamos o id, o JSON server vai ficar encarregado de criar automaticamente um id aleatório
+        }
         ui.renderizarPensamentos();
     }
     catch {
@@ -23,3 +27,13 @@ async function manipularSubmissaoFormulario(event){
         throw error;
     }
 }
+
+const botaoCancelar = document.getElementById("botao-cancelar");
+
+botaoCancelar.addEventListener("click", () => {
+    const inputConteudo = document.getElementById("pensamento-conteudo");
+    const inputAutoria = document.getElementById("pensamento-autoria");
+
+    inputConteudo.value = "";
+    inputAutoria.value = "";
+})

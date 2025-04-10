@@ -12,7 +12,7 @@
     },
     {
       "id": "5b8a",
-      "conteudo": "Na minha máquina funciona!",
+      "conteudo": "Na minha máquina também não funciona!",
       "autoria": "Dev"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "id": "3f1a",
-      "conteudo": "Conserta minha impressora?",
+      "conteudo": "Conserta meu computador?",
       "autoria": "Grupo da família"
     },
     {
@@ -74,6 +74,11 @@
       "id": "4cf7",
       "conteudo": "          Na minha máquina funciona!",
       "autoria": "Dev"
+    },
+    {
+      "id": "b977",
+      "conteudo": "          Que é isso?",
+      "autoria": "Eu"
     }
   ]
 }
