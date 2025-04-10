@@ -12,13 +12,20 @@ const ui = {
     async renderizarPensamentos(){
         const listaPensamentos = document.getElementById('lista-pensamentos');
         listaPensamentos.innerHTML = '';
+        removerListaVazia()
 
         try{
             const pensamentos = await api.buscarPensamentos();
             pensamentos.forEach(ui.adicionarPensamentoNaLista)
+            console.log(Array.isArray(pensamentos))
+            
+            if (Array.isArray(pensamentos) && pensamentos.length === 0){
+                listaVazia();
+            }
         }
          catch {
-            alert('Erro ao retornar pensamentos')
+            listaVazia();
+            // alert('Erro ao retornar pensamentos')
             throw error;
          }
     },
@@ -80,6 +87,34 @@ const ui = {
         li.appendChild(pensamentoAutoria);
         li.appendChild(icones);
         listaPensamentos.appendChild(li);
+    }
+}
+
+function listaVazia(){
+    const listaPensamentos = document.getElementById('lista-pensamentos-container');
+    const textoListaVazia = document.createElement("p");
+    const imagemListaVazia = document.createElement("img");
+    const listaVaziaDiv = document.createElement("div");
+
+    textoListaVazia.textContent = "Nada por aqui ainda, que tal compartilhar alguma ideia?"
+    textoListaVazia.classList.add("texto-lista-vazia")
+    imagemListaVazia.src = "/assets/imagens/lista-vazia.png";
+    imagemListaVazia.alt = "Caixa vazia com moscas"
+    imagemListaVazia.classList.add("imagem-lista-vazia")
+    listaVaziaDiv.id = "container-lista-vazia";
+
+    listaVaziaDiv.appendChild(textoListaVazia);
+    listaVaziaDiv.appendChild(imagemListaVazia);
+    listaPensamentos.appendChild(listaVaziaDiv);
+}
+
+function removerListaVazia(){
+    const textoListaVazia = document.querySelector(".texto-lista-vazia");
+    const imagemListaVazia = document.querySelector(".imagem-lista-vazia");
+    const listaVaziaDiv = document.getElementById("container-lista-vazia");
+
+    if (listaVaziaDiv){
+        listaVaziaDiv.remove();
     }
 }
 
